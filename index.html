@@ -58,13 +58,14 @@
             my.postMessage({ message: "Hola-página web" });
         });
         my.onMessage = function (event) {
+            const { message } = event
             console.log('mensaje: ', event);
             my.alert({
                 title: 'Mensaje recibido página web',
-                content: event
+                content: message.messageMp
             })
             const input = document.getElementById("message");
-            input.value = event.messageMp
+            input.value = message.messageMp
         }
         function enviarMensaje() {
             const input = document.getElementById("mensajeInput");
