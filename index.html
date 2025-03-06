@@ -56,12 +56,12 @@
         my.onMessage = function (event) {
             const { message } = event
             console.log('mensaje: ', message);
-            const input = document.getElementById("message");
-            input.value = message
             my.alert({
                 title: 'Mensaje recibido página web',
                 content: menssage
             })
+            const input = document.getElementById("message");
+            input.value = message
         }
         function enviarMensaje() {
             const input = document.getElementById("mensajeInput");
