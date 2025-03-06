@@ -52,11 +52,11 @@
     <button class="btn" onclick="enviarMensaje()">Enviar Mensaje</button>
     <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <script>
-        my.onMessage = function (e) {
-            console.log(e);
+        my.onMessage = function (event) {
+            const { message } = event
             my.alert({
-                title: 'Mensaje',
-                content: JSON.stringify(e)
+                title: 'Mensaje recibido página web',
+                content: message
             })
         }
         function enviarMensaje() {
