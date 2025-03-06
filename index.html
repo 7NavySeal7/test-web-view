@@ -16,6 +16,7 @@
             background: linear-gradient(135deg, #6a11cb, #2575fc);
             gap: 10px;
         }
+
         .input-box {
             padding: 10px;
             font-size: 16px;
@@ -26,6 +27,7 @@
             text-align: center;
             margin-bottom: 15px;
         }
+
         .btn {
             padding: 15px 30px;
             font-size: 18px;
@@ -37,6 +39,7 @@
             background: linear-gradient(135deg, #ff758c, #ff7eb3);
             transition: transform 0.2s, box-shadow 0.2s;
         }
+
         .btn:hover {
             transform: scale(1.05);
             box-shadow: 0px 4px 10px rgba(255, 117, 140, 0.5);
@@ -49,6 +52,13 @@
     <button class="btn" onclick="enviarMensaje()">Enviar Mensaje</button>
     <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <script>
+        my.onMessage = function (e) {
+            console.log(e);
+            my.alert({
+                title: 'Mensaje',
+                content: JSON.stringify(e)
+            })
+        }
         function enviarMensaje() {
             const input = document.getElementById("mensajeInput");
             const mensaje = input.value.trim() || "Hola-página web";
