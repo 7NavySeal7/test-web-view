@@ -53,6 +53,10 @@
     <button class="btn" onclick="enviarMensaje()">Enviar Mensaje</button>
     <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log('entró');
+            my.postMessage({ message: "Hola-página web" });
+        });
         my.onMessage = function (event) {
             const { message } = event
             console.log('mensaje: ', message);
@@ -67,7 +71,7 @@
             const input = document.getElementById("mensajeInput");
             const mensaje = input.value.trim() || "Hola-página web";
             console.log('mensaje: ', mensaje || "Hola-página web")
-            my.postMessage({ name: mensaje || "Hola-página web" });
+            my.postMessage({ message: mensaje || "Hola-página web" });
         }
     </script>
 </body>
