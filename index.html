@@ -54,6 +54,7 @@
     <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            my.showLoading();
             console.log('entró');
             my.postMessage({ message: "Hola-página web" });
         });
@@ -66,6 +67,7 @@
             })
             const input = document.getElementById("message");
             input.value = message.messageMp
+            my.hideLoading();
         }
         function enviarMensaje() {
             const input = document.getElementById("mensajeInput");
