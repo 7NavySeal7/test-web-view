@@ -61,19 +61,16 @@
         my.onMessage = function (event) {
             const { message } = event
             console.log('mensaje: ', event);
-            my.alert({
-                title: 'Mensaje recibido página web',
-                content: message.messageMp
-            })
             const input = document.getElementById("message");
             input.value = message.messageMp
             my.hideLoading();
         }
         function enviarMensaje() {
+            my.showLoading();
             const input = document.getElementById("mensajeInput");
             const mensaje = input.value.trim() || "Hola-página web";
-            console.log('mensaje: ', mensaje || "Hola-página web")
-            my.postMessage({ message: mensaje || "Hola-página web" });
+            console.log('mensaje: ', mensaje)
+            my.postMessage({ message: mensaje});
         }
     </script>
 </body>
