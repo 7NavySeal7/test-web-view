@@ -45,6 +45,13 @@
             box-shadow: 0px 4px 10px rgba(255, 117, 140, 0.5);
         }
     </style>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log('entró');
+            my.showLoading({ content: 'Cargando...' });
+            my.postMessage({ message: "Hola-página web" });
+        });
+    </script>
 </head>
 
 <body>
@@ -53,23 +60,18 @@
     <button class="btn" onclick="enviarMensaje()">Enviar Mensaje</button>
     <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            my.showLoading();
-            console.log('entró');
-            my.postMessage({ message: "Hola-página web" });
-        });
         my.onMessage = function (event) {
-            const { message } = event
+            const { message } = event;
             console.log('mensaje: ', event);
             const input = document.getElementById("message");
-            input.value = message.messageMp
+            input.value = message.messageMp;
             my.hideLoading();
         }
         function enviarMensaje() {
-            my.showLoading();
+            my.showLoading({ content: 'Cargando...' });
             const input = document.getElementById("mensajeInput");
             const mensaje = input.value.trim() || "Hola-página web";
-            console.log('mensaje: ', mensaje)
+            console.log('mensaje: ', mensaje);
             my.postMessage({ message: mensaje});
         }
     </script>
