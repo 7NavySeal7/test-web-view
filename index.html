@@ -54,6 +54,7 @@
     <script>
         my.onMessage = function (event) {
             const { message } = event
+            console.log('mensaje: ', message)
             my.alert({
                 title: 'Mensaje recibido página web',
                 content: message
