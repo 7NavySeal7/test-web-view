@@ -48,16 +48,19 @@
 </head>
 
 <body>
-    <input id="mensajeInput" type="text" class="input-box" placeholder="Escribe tu mensaje">
+    <input id="message" type="text" class="input-box" disabled>
+    <input id="mensajeInput" type="text" class="input-box" placeholder="Escribe tu mensaje" value="">
     <button class="btn" onclick="enviarMensaje()">Enviar Mensaje</button>
     <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <script>
         my.onMessage = function (event) {
             const { message } = event
-            console.log('mensaje: ', message)
+            console.log('mensaje: ', message);
+            const input = document.getElementById("message");
+            input.value = message
             my.alert({
                 title: 'Mensaje recibido página web',
-                content: message
+                content: menssage
             })
         }
         function enviarMensaje() {
