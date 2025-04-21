@@ -78,7 +78,7 @@
         });
         my.hideLoading();
       }
-      function close() {
+      function cerrarPage() {
         my.postMessage({
            message: { action: "close" }
         })
@@ -102,7 +102,7 @@
     />
     <button class="btn" onclick="loginExitoso()">Iniciar Sesión</button>
     <button class="btn" onclick="loginCancelado()">Cancelar</button>
-    <button class="btn" onclick="close()">Cerrar page</button>
+    <button class="btn" onclick="cerrarPage()">Cerrar page</button>
     <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <!-- Sdk de miniprograms para que la web entienda los my. -->
     <script>
