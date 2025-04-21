@@ -1,80 +1,110 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test web-view</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            gap: 10px;
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        gap: 10px;
+      }
 
-        .input-box {
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #ffffff;
-            border-radius: 20px;
-            outline: none;
-            width: 250px;
-            text-align: center;
-            margin-bottom: 15px;
-        }
+      .input-box {
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #ffffff;
+        border-radius: 20px;
+        outline: none;
+        width: 250px;
+        text-align: center;
+        margin-bottom: 15px;
+      }
 
-        .btn {
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+      .btn {
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 4px 10px rgba(255, 117, 140, 0.5);
-        }
+      .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 4px 10px rgba(255, 117, 140, 0.5);
+      }
     </style>
-        <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            console.log('entró');
-            my.showLoading({ content: 'Cargando...' });
-            my.postMessage({ message: "Hola-página web" });
-        });
-    </script>
-</head>
-
-<body>
-    <input id="message" type="text" class="input-box" disabled>
-    <input id="mensajeInput" type="text" class="input-box" placeholder="Escribe tu mensaje" value="">
-    <button class="btn" onclick="enviarMensaje()">Enviar Mensaje</button>
-    <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <script>
-        my.onMessage = function (event) {
-            const { message } = event;
-            console.log('mensaje: ', event);
-            const input = document.getElementById("message");
-            input.value = message.messageMp;
-            my.hideLoading();
-        }
-        function enviarMensaje() {
-            my.showLoading({ content: 'Cargando...' });
-            const input = document.getElementById("mensajeInput");
-            const mensaje = input.value.trim() || "Hola-página web";
-            console.log('mensaje: ', mensaje);
-            my.postMessage({ message: mensaje});
-        }
-    </script>
-</body>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Página cargada");
+        my.showLoading({ content: "Cargando..." });
+        my.postMessage({
+          message: { email: "Hola desde la web" },
+        }); // Enviar un mensaje inicial al mini programa
+      });
 
+      function loginExitoso() {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (!email || !password) {
+          alert("Por favor, ingrese su correo electrónico y contraseña.");
+          return;
+        }
+
+        my.showLoading({ content: "Iniciando sesión..." });
+        my.postMessage({
+          message: { email: email, suscriptionId: 12075 },
+        });
+        my.hideLoading();
+        console.log("Email ingresado:", email);
+        console.log("Contraseña ingresada:", password);
+      }
+
+      function loginCancelado() {
+        my.showLoading({ content: "Cancelando..." });
+        my.postMessage({
+          message: { email: "", suscriptionId: -1 },
+        });
+        my.hideLoading();
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1 style="color: white">Simulación de Login</h1>
+    <input
+      type="email"
+      id="email"
+      class="input-box"
+      placeholder="Correo electrónico"
+    />
+    <input
+      type="password"
+      id="password"
+      class="input-box"
+      placeholder="Contraseña"
+    />
+    <button class="btn" onclick="loginExitoso()">Iniciar Sesión</button>
+    <button class="btn" onclick="loginCancelado()">Cancelar</button>
+    <script type="text/javascript" src="https://appx/web-view.min.js"></script>
+    <!-- Sdk de miniprograms para que la web entienda los my. -->
+    <script>
+      my.onMessage = function (event) {
+        const { message } = event;
+        console.log("Mensaje recibido del mini programa: ", event);
+        my.hideLoading();
+      };
+    </script>
+  </body>
 </html>
