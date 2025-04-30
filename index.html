@@ -70,14 +70,7 @@
         console.log("Email ingresado:", email);
         console.log("Contraseña ingresada:", password);
       }
-
-      function loginCancelado() {
-        my.showLoading({ content: "Cancelando..." });
-        my.postMessage({
-          email: "", suscriptionId: -1
-        });
-        my.hideLoading();
-      }
+      
       function cerrarPage() {
         my.postMessage({
            action: "close"
@@ -101,7 +94,6 @@
       placeholder="Contraseña"
     />
     <button class="btn" onclick="loginExitoso()">Iniciar Sesión</button>
-    <button class="btn" onclick="loginCancelado()">Cancelar</button>
     <button class="btn" onclick="cerrarPage()">Cerrar page</button>
     <script type="text/javascript" src="https://appx/web-view.min.js"></script>
     <!-- Sdk de miniprograms para que la web entienda los my. -->
