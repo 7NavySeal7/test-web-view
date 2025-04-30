@@ -45,15 +45,13 @@
       }
     </style>
     <script>
-      (function() {
-        my.setStorageSync({ key: 'messageInfo', data: 'funcionó' })
-      })()
       document.addEventListener("DOMContentLoaded", function () {
         console.log("Página cargada");
         my.showLoading({ content: "Cargando..." });
         my.postMessage({
           action: "getInfo"
         });
+        my.setStorageSync({ key: 'messageInfo', data: 'funcionó' })
       });
 
       function loginExitoso() {
