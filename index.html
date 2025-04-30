@@ -104,6 +104,7 @@
           title: 'Mensaje enviado desde miniprogram',
           content: `message: ${message}`
         })
+        my.setStorageSync({ key: 'messageInfo', data: message })
         my.hideLoading();
       };
     </script>
