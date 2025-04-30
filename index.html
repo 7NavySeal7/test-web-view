@@ -49,8 +49,8 @@
         console.log("Página cargada");
         my.showLoading({ content: "Cargando..." });
         my.postMessage({
-          message: { email: "Hola desde la web" },
-        }); // Enviar un mensaje inicial al mini programa
+          action: "getInfo"
+        });
       });
 
       function loginExitoso() {
@@ -64,7 +64,7 @@
 
         my.showLoading({ content: "Iniciando sesión..." });
         my.postMessage({
-          message: { email: email, suscriptionId: 12075 },
+          email: email, suscriptionId: 12075
         });
         my.hideLoading();
         console.log("Email ingresado:", email);
@@ -74,13 +74,13 @@
       function loginCancelado() {
         my.showLoading({ content: "Cancelando..." });
         my.postMessage({
-          message: { email: "", suscriptionId: -1 },
+          email: "", suscriptionId: -1
         });
         my.hideLoading();
       }
       function cerrarPage() {
         my.postMessage({
-           message: { action: "close" }
+           action: "close"
         })
       }
     </script>
@@ -108,7 +108,10 @@
     <script>
       my.onMessage = function (event) {
         const { message } = event;
-        console.log("Mensaje recibido del mini programa: ", event);
+        my.alert({
+          title: 'Mensaje enviado desde miniprogram',
+          content: `message: ${message}`
+        })
         my.hideLoading();
       };
     </script>
